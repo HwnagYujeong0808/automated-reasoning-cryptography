@@ -1,0 +1,26 @@
+# Isabelle
+.isabelle/
+*.thy~
+output/
+
+# Rocq / Coq build artifacts (keep the generated .v files themselves)
+*.vo
+*.vok
+*.vos
+*.glob
+*.aux
+.lia.cache
+.nia.cache
+_CoqProject.d
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Scratch
+scratch/
+tmp/

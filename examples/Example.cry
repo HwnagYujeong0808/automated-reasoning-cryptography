@@ -1,0 +1,24 @@
+/*
+ * Example.cry
+ *
+ * Training example for the Cryptol -> SAW -> proof assistant pipeline.
+ * Source: problem mentor (Matt Benke).
+ *
+ * These four properties are basic ring-arithmetic laws. They are not the
+ * object of study; they are a small, readable specification used to exercise
+ * the full extraction pipeline end to end.
+ */
+
+module Example where
+
+add_assoc_l: {a} (Eq a, Ring a) => a -> a -> a -> Bool
+property add_assoc_l x y z = x + (y + z) == (x + y) + z
+
+add_comm: {a} (Eq a, Ring a) => a -> a -> Bool
+property add_comm x y = x + y == y + x
+
+dist_l: {a} (Eq a, Ring a) => a -> a -> a -> Bool
+property dist_l x y z = x * (y + z) == x * y + x * z
+
+dist_r: {a} (Eq a, Ring a) => a -> a -> a -> Bool
+property dist_r x y z = (x + y) * z == x * z + y * z

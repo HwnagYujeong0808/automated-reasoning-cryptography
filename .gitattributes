@@ -1,0 +1,8 @@
+# Keep shell scripts and SAW/Cryptol sources LF, so they still run after a
+# clone on Windows. A CRLF in run-saw.sh produces "bad interpreter" in Bash.
+*.sh   text eol=lf
+*.saw  text eol=lf
+*.cry  text eol=lf
+*.thy  text eol=lf
+*.v    text eol=lf
+*.md   text

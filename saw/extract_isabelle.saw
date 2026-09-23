@@ -1,0 +1,20 @@
+// extract_isabelle.saw
+//
+// Non-interactive version of the Isabelle extraction experiment.
+// Run from the repository root inside the SAW 1.6 container:
+//
+//     saw saw/extract_isabelle.saw
+//
+// Expected output: outputs/isabelle/Example.thy
+
+print "[1/3] Loading Cryptol module examples/Example.cry ...";
+Example <- cryptol_load "examples/Example.cry";
+print Example;
+
+print "[2/3] Enabling experimental commands ...";
+enable_experimental;
+
+print "[3/3] Writing Isabelle theory to outputs/isabelle ...";
+write_isabelle_cryptol_modules [Example] [] "outputs/isabelle";
+
+print "Done. Check outputs/isabelle/Example.thy on the host.";

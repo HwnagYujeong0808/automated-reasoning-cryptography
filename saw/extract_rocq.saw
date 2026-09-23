@@ -1,0 +1,27 @@
+// extract_rocq.saw
+//
+// Rocq (Coq) extraction of the same module, for the Rocq-vs-Isabelle
+// comparison in docs/training-notes.md. The Rocq path in SAW is the more
+// mature of the two, but the exact command name and argument list must be
+// confirmed against this SAW build before trusting this script:
+//
+//     saw
+//     sawscript> enable_experimental
+//     sawscript> :env
+//
+// Look for a command whose name contains "coq" (for example
+// write_coq_cryptol_module). Fill it in below, then run:
+//
+//     saw saw/extract_rocq.saw
+//
+// This script is a PLACEHOLDER: the command line below is commented out
+// until a team member has verified the signature in SAW 1.6.
+
+print "Loading Cryptol module examples/Example.cry ...";
+Example <- cryptol_load "examples/Example.cry";
+enable_experimental;
+
+// TODO(team): replace with the verified Rocq/Coq extraction command, e.g.
+// write_coq_cryptol_module "examples/Example.cry" "outputs/rocq/Example.v" [] [];
+
+print "Rocq extraction command not yet filled in - see saw/README.md.";

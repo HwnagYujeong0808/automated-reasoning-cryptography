@@ -88,3 +88,23 @@ experiment template. Nothing has been run against SAW yet — every "expected
 output" in the docs comes from the mentor's description, not from our own
 observation, and should be treated as unverified until a `results/` file backs
 it up.
+
+### 2026-09-23 — Antonio — AWS / Cryptol / SAW validation
+Validated the Week 1 workflow on Ubuntu 26.04.1 LTS running on AWS EC2.
+SAW 1.6 successfully loaded `examples/Example.cry` and generated
+`outputs/isabelle/Example.thy` (929 bytes) using the manual container workflow.
+
+Cryptol 2.9.1 was run separately with `cryptolcourse/dev`. `add_comm`
+specialized to `[8]` passed `:check`, was proved with Z3 using `:prove`,
+and returned a satisfying example with `:sat`.
+
+The repository `run-saw.sh` wrapper reached the Isabelle translation step but
+failed when writing `outputs/isabelle/Example.thy`; the exact cause remains
+unresolved. Manual SAW execution successfully generated the file.
+
+Full run details: `results/01-isabelle-extraction-antonio.md`.
+
+  - Antonio (2026-09-23): generated `Example.thy` contains
+    `cryptol_definition` entries for the extracted properties. Isabelle has
+    not yet been run, so whether additional lemma statements are required
+    remains to be verified.

@@ -10,6 +10,8 @@ Our primary workflow is:
 
 **Cryptol Specification → SAW → Rocq / Isabelle → Formal Verification**
 
+![Project Pipeline](img/pipeline.png)
+
 The project investigates how cryptographic specifications can be extracted into proof assistants and formally validated, as well as the current limitations of this workflow.
 
 ## Tools

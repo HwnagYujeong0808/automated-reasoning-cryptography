@@ -1,0 +1,9 @@
+===== REPRODUCIBILITY RECORD =====
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+7.0.0-1013-aws
+Docker version 29.1.3, build 29.1.3-0ubuntu4.1
+git version 2.53.0
+yujung
+8f4edc1e266bcda680fa9412b4db0ce6be2629bd
+a0bd9fa1680ac3e94a2fe1b5b6979c21c4567ee897a91dd59f53b346d0c3f791  outputs/isabelle/Example.thy
+1ac21a930c6541bfe9bc821aa2d083096e4e212605601dc5a5322fdc3080d23c  outputs/rocq/Example.v

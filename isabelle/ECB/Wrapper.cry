@@ -1,0 +1,1 @@
+module ECB::Wrapper = ECB { _ }

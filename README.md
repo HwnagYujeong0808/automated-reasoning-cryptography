@@ -54,14 +54,18 @@ say so in a `results/` file.
 ```
 automated-reasoning-cryptography/
 ├── README.md                       # you are here
+├── replay.sh                       # one command: ECB + CBC, Cryptol -> SAW -> Rocq
 ├── img/pipeline.png
-├── examples/Example.cry            # Cryptol source specifications
+├── examples/                       # Cryptol source specifications
+│   ├── Example.cry
+│   ├── ECB.cry, ECB/Wrapper.cry
+│   └── CBC.cry, CBC/Wrapper.cry
 ├── saw/                            # SAW scripts + the docker launcher
 ├── isabelle/                       # hand-written Isabelle proof material
-├── rocq/                           # hand-written Rocq proof material
+├── rocq/                           # hand-written Rocq proofs, _RocqProject, Dockerfile
 ├── outputs/
 │   ├── isabelle/                   # GENERATED - Example.thy lands here
-│   └── rocq/                       # GENERATED
+│   └── rocq/                       # GENERATED - ECB/, CBC/ wrappers land here
 ├── docs/
 │   ├── implementation-guide.md     # the full project guide
 │   ├── setup.md                    # Windows/WSL2 + Linux setup
@@ -235,38 +239,28 @@ not to collect a green checkmark.
 
 ## Rocq
 
-Not started. The mentor described SAW's Rocq extraction as **more mature** than
-the Isabelle path, but gave us a known-good command sequence only for Isabelle.
-So we reproduce Isabelle first, work out the Rocq equivalent second, compare
-third.
-
-### Finding the extraction command
-
-SAW's Coq/Rocq support has changed command names across versions. Don't trust a
-name from an older tutorial — confirm it against this build:
+Working end to end for ECB and CBC. On a Linux host with Docker:
 
 ```bash
-./saw/run-saw.sh
+./replay.sh
 ```
 
-```
-sawscript> enable_experimental
-sawscript> :env
-```
+The script logs to `results/replay-<hostname>.log` and needs no TTY. It stops if
+a step fails, if extraction differs from the committed `outputs/rocq/`, or if a
+proof rests on any axiom other than `error`. The first run builds a 6 GB Rocq
+image and takes a few minutes; later runs take about a minute.
 
-Scan for commands containing `coq` (historically `write_coq_term`,
-`write_coq_cryptol_module`, and related forms), then `:h <command>` for its
-exact argument list. Write the verified command into
-[saw/extract_rocq.saw](saw/extract_rocq.saw), which is currently a placeholder.
+| Step | What runs | Where |
+| --- | --- | --- |
+| 1 | Pull SAW, build Rocq image | `ghcr.io/galoisinc/saw:1.6`, `rocq/saw-core-rocq.Dockerfile` |
+| 2 | Generate SAW's Rocq scaffolding | `saw-script` v1.6, cloned to `.cache/` |
+| 3 | Extract wrappers with `write_rocq_cryptol_module` | `saw/extract_rocq.saw` -> `outputs/rocq/` |
+| 4 | Compile scaffolding, wrappers, proofs | `rocq/_RocqProject`, `rocq/ECB/`, `rocq/CBC/` |
 
-Expect the same class of problem as `Cryptol.Cryptol`: generated Rocq files
-depend on a support library (the SAW Coq backend has historically targeted
-`CryptolToCoq`), so the file will not compile against a bare Rocq install.
-Finding and pinning that library is part of the experiment.
-
-Then: extract to `outputs/rocq/Example.v`, get it to compile, prove `add_comm`,
-and fill in the comparison table in
-[docs/training-notes.md](docs/training-notes.md).
+SAW will not extract a parameterized module directly, so each mode has a
+`Wrapper.cry` that instantiates it with `{ _ }`. See
+[results/02-rocq-ecb-cbc-yujung.md](results/02-rocq-ecb-cbc-yujung.md) for the
+run record and the fixes made to the mentor's example.
 
 ## Outputs
 
@@ -301,7 +295,7 @@ success with no notes.
 | # | Experiment | Member | Date | Extraction | Proof |
 | --- | --- | --- | --- | --- | --- |
 | 01 | Cryptol → SAW → Isabelle | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
-| 02 | Cryptol → SAW → Rocq | _TBD_ | _TBD_ | _TBD_ | _TBD_ |
+| 02 | Cryptol → SAW → Rocq (ECB, CBC) | Yujung | 2026-10-31 | Yes | Yes |
 
 Worth recording: it worked end to end; it worked but needed a manual step; the
 output would not load in the proof assistant; SAW rejected a Cryptol construct;
@@ -349,7 +343,7 @@ is the failure mode this avoids.
 | Repository scaffolding | Done |
 | Docker + SAW 1.6 environment | Not yet verified by the team |
 | Experiment 1 — Isabelle extraction | Not started |
-| Experiment 2 — Rocq extraction | Not started |
+| Experiment 2 — Rocq extraction | Done (ECB, CBC) |
 | Isabelle proof attempt | Not started |
 | Proof-assistant decision | Blocked on Experiments 1 and 2 |
 

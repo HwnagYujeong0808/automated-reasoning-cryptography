@@ -1,0 +1,17 @@
+-Q ECB ECB
+-Q ../outputs/rocq/ECB ECB
+-Q CBC CBC
+-Q ../outputs/rocq/CBC CBC
+
+-Q saw-core/generated/CryptolToRocq    CryptolToRocq
+-Q saw-core/handwritten/CryptolToRocq  CryptolToRocq
+
+-arg -w -arg -overriding-logical-loadpath
+
+../outputs/rocq/ECB/Wrapper.v
+ECB/Proof.v
+ECB/Bool.v
+
+../outputs/rocq/CBC/Wrapper.v
+CBC/Proof.v
+CBC/Bool.v

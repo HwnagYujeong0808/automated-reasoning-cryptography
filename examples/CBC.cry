@@ -1,0 +1,27 @@
+module CBC where
+
+parameter
+  type Key: *
+  type Block: *
+  type constraint (Logic Block)
+  encipher, decipher: Key -> Block -> Block
+
+// scanl, not a self-referencing `cts = ...` stream: SAW cannot extract recursion.
+encrypt, decrypt: {n} Key -> Block -> [n]Block -> [n]Block
+encrypt key iv pts =
+  drop`{1} (scanl (\prev pt -> encipher key (pt ^ prev)) iv pts)
+decrypt key iv cts =
+  map (\(_, pt) -> pt)
+    (drop`{1} (scanl (\(prev, _) ct -> (ct, decipher key ct ^ prev)) (iv, iv) cts))
+
+/** @assume */
+deciphers: (Eq Block) => Key -> Block -> Bool
+deciphers key block = decipher key (encipher key block) == block
+
+/** @assume */
+xor_cancels: (Eq Block) => Block -> Block -> Bool
+xor_cancels a b = (a ^ b) ^ b == a
+
+/** @guarantee */
+decrypts: {n} (fin n, Eq Block) => Key -> Block -> [n]Block -> Bool
+decrypts key iv blocks = decrypt key iv (encrypt key iv blocks) == blocks

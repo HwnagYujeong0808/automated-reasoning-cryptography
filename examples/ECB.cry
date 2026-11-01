@@ -1,20 +1,19 @@
 module ECB where
 
-parameter 
+parameter
+  type Key: *
+  type Block: *
 
-   type Key: *
-   type Block: *
-   encipher, decipher: Key -> Block -> Block
+  encipher, decipher: Key -> Block -> Block
 
-encrypt, decrypt: {n} (fin n) => Key -> [n]Block -> [n]Block
- 
+encrypt, decrypt: {n} Key -> [n]Block -> [n]Block
 encrypt key = map (encipher key)
-// encrypt key blocks = map (encipher key) blocks
- 
 decrypt key = map (decipher key)
-// decrypt key blocks = map (decipher key) blocks
 
-property decrypts key blocks = decrypt key (encrypt key blocks) == blocks
+/** @assume */
+deciphers: (Eq Block) => Key -> Block -> Bool
+deciphers key block = decipher key (encipher key block) == block
 
-property deciphers key block = decipher key (encipher key block) == block
-
+/** @guarantee */
+decrypts: {n} (fin n, Eq Block) => Key -> [n]Block -> Bool
+decrypts key blocks = decrypt key (encrypt key blocks) == blocks

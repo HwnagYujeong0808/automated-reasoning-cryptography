@@ -24,3 +24,12 @@ desktop.ini
 # Scratch
 scratch/
 tmp/
+
+# Rocq build by ./replay.sh
+Makefile.rocq
+Makefile.rocq.conf
+.Makefile.rocq.d
+
+# Fetched by ./replay.sh (mount point + SAW scaffolding source)
+rocq/saw-core/
+.cache/

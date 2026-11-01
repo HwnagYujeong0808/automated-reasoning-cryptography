@@ -73,6 +73,18 @@ automated-reasoning-cryptography/
 └── results/                        # one file per experiment run
 ```
 
+| Path | Contents |
+| --- | --- |
+| `replay.sh` | Runs the whole Rocq pipeline for ECB and CBC |
+| `examples/` | Cryptol specs: `Example.cry`, `ECB.cry`, `CBC.cry`, and each `Wrapper.cry` |
+| `saw/` | SAW scripts `extract_rocq.saw` and `extract_isabelle.saw`, launcher `run-saw.sh` |
+| `outputs/rocq/` | Generated Rocq: `ECB/Wrapper.v`, `CBC/Wrapper.v`, `Example.v` |
+| `outputs/isabelle/` | Generated Isabelle: `Example.thy` |
+| `rocq/` | Hand-written proofs `Proof.v` and `Bool.v`, plus the Rocq build config |
+| `isabelle/` | Hand-written Isabelle proof material |
+| `results/` | Run logs such as `replay-gram-yujung.log`, and experiment records |
+| `docs/` | Setup guide, implementation guide, training notes |
+
 The split that matters: `examples/` and `saw/` are **inputs we write**,
 `outputs/` is **what the tool produces**, and `results/` is **what happened
 when we ran it**. Keeping generated files out of the hand-written directories

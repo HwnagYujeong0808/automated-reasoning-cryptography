@@ -1,0 +1,41 @@
+
+=== Environment
+2026-11-01 01:12:11 UTC
+Linux 6.6.87.2-microsoft-standard-WSL2
+Docker version 29.8.0, build 88096ef
+commit: 187ab038763791ab76cfaf5ad929cedb5e51e07b
+
+=== 1/4 Images
+ghcr.io/galoisinc/saw:1.6
+ghcr.io/galoisinc/saw:1.6 sha256:92571e2bf339e03a2d11202fbef5c50de33a08612380403cc5450b9e1a4460af
+saw-core-rocq:9.1.1 sha256:e9f1dcb402e9d1fd4bb8a69b87ca9a7ebf32e5e26cff4d5a417761dc11f9d2bf
+
+=== 2/4 SAW scaffolding (saw-core-rocq, v1.6)
+Loading file "saw-core-rocq/saw/generate_scaffolding.saw"
+
+=== 3/4 Extract ECB and CBC wrappers
+Loading file "saw/extract_rocq.saw"
+Extracted examples/ECB/Wrapper.cry to outputs/rocq/ECB/Wrapper.v
+Extracted examples/CBC/Wrapper.cry to outputs/rocq/CBC/Wrapper.v
+Extraction matches committed outputs/rocq.
+
+=== 4/4 Compile saw-core, wrappers and proofs
+ROCQ compile saw-core (quiet)
+ROCQ DEP VFILES
+ROCQ compile ../outputs/rocq/ECB/Wrapper.v
+ROCQ compile ECB/Proof.v
+ROCQ compile ECB/Bool.v
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
+ROCQ compile ../outputs/rocq/CBC/Wrapper.v
+ROCQ compile CBC/Proof.v
+ROCQ compile CBC/Bool.v
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
+
+=== Result
+54bc99ff2e9d930ca63c0983fabeebecef7f35ca89fe6d85774d2105534bfd1c  outputs/rocq/ECB/Wrapper.v
+8a944cdf117a0220d5d6ea59a8d56078fa56e5e2db626e3f5867c434eedde252  outputs/rocq/CBC/Wrapper.v
+ECB and CBC validated in 62s; only axiom: error.

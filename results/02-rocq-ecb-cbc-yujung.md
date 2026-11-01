@@ -17,7 +17,6 @@
 | Docker version | 29.8.0 |
 | SAW image | `ghcr.io/galoisinc/saw:1.6` |
 | Proof assistant + version | Rocq 9.1.1 (`rocq/saw-core-rocq.Dockerfile`) |
-| AWS host | Not run: port 22 timed out on 2026-10-31 |
 
 ## Inputs and target
 

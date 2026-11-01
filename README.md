@@ -247,8 +247,8 @@ Working end to end for ECB and CBC. On a Linux host with Docker:
 
 The script logs to `results/replay-<hostname>.log` and needs no TTY. It stops if
 a step fails, if extraction differs from the committed `outputs/rocq/`, or if a
-proof rests on any axiom other than `error`. The first run builds a 6 GB Rocq
-image and takes a few minutes; later runs take about a minute.
+proof rests on any axiom other than `error`. The first run builds a 6 GB Rocq image
+(about 13 minutes on 16 cores); later runs take under 2 minutes.
 
 | Step | What runs | Where |
 | --- | --- | --- |

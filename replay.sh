@@ -46,6 +46,9 @@ docker run --rm -u "$USERMAP" -v "$SAW_SCRIPT:/work" -w /work "$SAW_IMAGE" \
   saw-core-rocq/saw/generate_scaffolding.saw
 
 step "3/4 Extract ECB and CBC wrappers"
+# SAW can exit 0 without writing (recursive specs: "Malformed term"). Removing the
+# old files first turns that silence into a failure of the git diff below.
+rm -f outputs/rocq/ECB/Wrapper.v outputs/rocq/CBC/Wrapper.v
 docker run --rm -u "$USERMAP" -v "$PWD:/work" -w /work \
   -e CRYPTOLPATH=/work/examples "$SAW_IMAGE" saw/extract_rocq.saw
 git diff --exit-code --stat -- outputs/rocq/ECB outputs/rocq/CBC

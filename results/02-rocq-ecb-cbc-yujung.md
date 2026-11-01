@@ -62,5 +62,9 @@ See `results/replay-*.log`. It is the unedited transcript of a clean-clone run.
 
 - A broken CBC `decrypt` (dropping `^ prev`) still extracts, then fails at
   `rocq/CBC/Proof.v` with exit code 2.
+- A recursive CBC `encrypt` (`cts = ... [iv] # cts`) makes SAW print
+  `Malformed term` and exit 0 without writing `Wrapper.v`. `examples/CBC.cry`
+  uses `scanl` for that reason, and `replay.sh` deletes old wrappers before
+  extraction so this cannot pass silently.
 - `examples/ECB.cry` was replaced by the mentor's version. The old version put
   `fin` on `encrypt`, which does not match the proofs.

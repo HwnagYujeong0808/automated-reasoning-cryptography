@@ -39,7 +39,7 @@ docker image inspect "$ROCQ_IMAGE" >/dev/null 2>&1 \
 docker image inspect --format '{{index .RepoTags 0}} {{.Id}}' "$SAW_IMAGE" "$ROCQ_IMAGE"
 
 step "2/4 SAW scaffolding (saw-core-rocq, v1.6)"
-[ -d "$SAW_SCRIPT" ] || git clone -q --depth 1 --branch v1.6 \
+[ -d "$SAW_SCRIPT" ] || git -c advice.detachedHead=false clone -q --depth 1 --branch v1.6 \
   https://github.com/GaloisInc/saw-script "$SAW_SCRIPT"
 mkdir -p "$SAW_SCRIPT/saw-core-rocq/rocq/generated/CryptolToRocq"
 docker run --rm -u "$USERMAP" -v "$SAW_SCRIPT:/work" -w /work "$SAW_IMAGE" \
@@ -67,9 +67,9 @@ docker run --rm -u "$USERMAP" -e HOME=/tmp -e "PATH=$OPAM_BIN:/usr/bin:/bin" \
     make -f Makefile.rocq' | tee "$ROCQ_OUT"
 
 step "Result"
-# Print Assumptions runs once per mode; `error` must be all either one rests on.
-[ "$(grep -c '^Axioms:' "$ROCQ_OUT")" = 2 ]
-extra="$(awk '/^ROCQ/{f=0} f; /^Axioms:/{f=1}' "$ROCQ_OUT" | grep -v '^error : ' || true)"
+# Three Print Assumptions (ECB, CBC, CBC on [w] blocks); `error` must be all they use.
+[ "$(grep -c '^Axioms:' "$ROCQ_OUT")" = 3 ]
+extra="$(awk '/^ROCQ/{f=0} f; /^Axioms:/{f=1}' "$ROCQ_OUT" | grep -v -E '^(Axioms:|error : )' || true)"
 [ -z "$extra" ] || { printf 'Unexpected axioms:\n%s\n' "$extra"; exit 1; }
 sha256sum outputs/rocq/ECB/Wrapper.v outputs/rocq/CBC/Wrapper.v
 echo "ECB and CBC validated in ${SECONDS}s; only axiom: error."

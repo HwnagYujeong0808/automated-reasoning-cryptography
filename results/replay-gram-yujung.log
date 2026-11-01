@@ -1,9 +1,10 @@
 
 === Environment
-2026-11-01 01:12:11 UTC
+2026-11-01 15:08:03 UTC
+PRETTY_NAME="Ubuntu 24.04.1 LTS"
 Linux 6.6.87.2-microsoft-standard-WSL2
 Docker version 29.8.0, build 88096ef
-commit: 187ab038763791ab76cfaf5ad929cedb5e51e07b
+commit: e4970da11703ed1c8d24cc4cdc8c3cedafcdfe71
 
 === 1/4 Images
 ghcr.io/galoisinc/saw:1.6
@@ -38,4 +39,4 @@ error : forall a : Type, Inhabited a -> string -> a
 === Result
 54bc99ff2e9d930ca63c0983fabeebecef7f35ca89fe6d85774d2105534bfd1c  outputs/rocq/ECB/Wrapper.v
 8a944cdf117a0220d5d6ea59a8d56078fa56e5e2db626e3f5867c434eedde252  outputs/rocq/CBC/Wrapper.v
-ECB and CBC validated in 62s; only axiom: error.
+ECB and CBC validated in 52s; only axiom: error.

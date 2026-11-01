@@ -103,6 +103,8 @@ That is the **minimum successful outcome** of the first experiment. Then copy
 Run every command from the repository root, in Bash — WSL/Ubuntu on Windows,
 not PowerShell.
 
+For the Rocq pipeline (ECB and CBC), run `./replay.sh`; see [Rocq](#rocq).
+
 ## The example specification
 
 [examples/Example.cry](examples/Example.cry), provided by the problem mentor,
@@ -239,7 +241,8 @@ not to collect a green checkmark.
 
 ## Rocq
 
-Working end to end for ECB and CBC. On a Linux host with Docker:
+Working end to end for ECB and CBC, built from the problem mentor's `ECBValid`
+example. On a Linux host with Docker:
 
 ```bash
 ./replay.sh
@@ -247,8 +250,8 @@ Working end to end for ECB and CBC. On a Linux host with Docker:
 
 The script logs to `results/replay-<hostname>.log` and needs no TTY. It stops if
 a step fails, if extraction differs from the committed `outputs/rocq/`, or if a
-proof rests on any axiom other than `error`. The first run builds a 6 GB Rocq image
-(about 13 minutes on 16 cores); later runs take under 2 minutes.
+proof rests on any axiom other than `error`. The first run builds a 6 GB Rocq
+image (about 13 minutes on 16 cores); later runs take under 2 minutes.
 
 | Step | What runs | Where |
 | --- | --- | --- |
@@ -257,10 +260,64 @@ proof rests on any axiom other than `error`. The first run builds a 6 GB Rocq im
 | 3 | Extract wrappers with `write_rocq_cryptol_module` | `saw/extract_rocq.saw` -> `outputs/rocq/` |
 | 4 | Compile scaffolding, wrappers, proofs | `rocq/_RocqProject`, `rocq/ECB/`, `rocq/CBC/` |
 
-SAW will not extract a parameterized module directly, so each mode has a
-`Wrapper.cry` that instantiates it with `{ _ }`. See
+To run one step by hand, copy its `docker` line out of `replay.sh`. A passing run
+ends each `Print Assumptions` with this axiom and no other:
+
+```
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
+```
+
+`error` is the out-of-bounds default in SAW's `sawAt`, so the proofs assume only
+an error that is never reached. See
 [results/02-rocq-ecb-cbc-yujung.md](results/02-rocq-ecb-cbc-yujung.md) for the
 run record and the fixes made to the mentor's example.
+
+### Files
+
+| File | What it is |
+| --- | --- |
+| `examples/ECB.cry`, `examples/CBC.cry` | Cryptol specs of the two block cipher modes |
+| `examples/ECB/Wrapper.cry`, `examples/CBC/Wrapper.cry` | Backtick-import wrappers that SAW can extract |
+| `saw/extract_rocq.saw` | Extracts both wrappers to `outputs/rocq/` |
+| `outputs/rocq/ECB/Wrapper.v`, `outputs/rocq/CBC/Wrapper.v` | GENERATED Rocq wrappers |
+| `rocq/ECB/Proof.v`, `rocq/CBC/Proof.v` | Proofs that `decrypt` inverts `encrypt` |
+| `rocq/ECB/Bool.v`, `rocq/CBC/Bool.v` | Proofs that the Cryptol properties equal `true` |
+| `rocq/_RocqProject` | Rocq project config; expects `rocq/saw-core/` as a mount point |
+| `rocq/saw-core-rocq.Dockerfile` | Rocq image with the libraries SAW's output needs |
+
+### How it works
+
+- **`{ _ }`:** `write_rocq_cryptol_module` refuses parameterized modules.
+  `{ _ }` instantiates one as a backtick import, whose type arguments and record
+  values are passed on each call. See
+  [Instantiation by Parameterizing Declarations](https://galoisinc.github.io/cryptol/3.6.0/Modules.html#instantiation-by-parametrizing-declarations).
+- **Assume and guarantee:** `@assume` properties are what a spec asks of an
+  implementation of its `parameter` block; in Rocq they are each a `Hypothesis`.
+  `@guarantee` properties are what the spec promises in return; in Rocq they are
+  each a `Theorem`.
+- **`bool` vs `Prop`:** SAW extracts a `property` as an ordinary function
+  returning `Bool`. `Proof.v` proves Rocq equality of the two sides of the `==`,
+  then `Bool.v` shows that Cryptol's `==` is reflexive, so the property is `true`.
+- **`fin` on the property:** a mode could run forever on an infinite message, but
+  checking equality has to stop. So `fin` and `Eq` sit on each property, not on
+  `encrypt` and `decrypt`.
+- **Reference, don't vendor:** SAW's scaffolding is generated once from
+  `saw-script` v1.6 and mounted at `rocq/saw-core/` at run time. It is not copied
+  into this repository.
+
+CBC adds three things to the ECB pattern:
+
+- **`Logic Block`:** a `type constraint` in the `parameter` block gives the spec
+  `(^)`, and the `xor_cancels` assumption says `(a ^ b) ^ b == a`. For `[w]`-bit
+  blocks Rocq proves this itself (`xor_cancels_word`), so `decrypts_word` assumes
+  only `deciphers`.
+- **`scanl` instead of recursion:** `encrypt` and `decrypt` both scan over the
+  blocks because a self-referencing `cts = ...` definition cannot be extracted.
+  `decrypt` keeps a (previous ciphertext, plaintext) pair, which avoids the
+  `n + 1 == 1 + n` cast that `take ([iv] # cts)` would add.
+- **`cbc_encrypt_cons`:** round-tripping alone does not separate CBC from ECB, so
+  this theorem also pins down C1 = E(P1 ^ IV), with C1 as the next IV.
 
 ## Outputs
 
@@ -306,8 +363,9 @@ matters most — reproducibility across our four machines is a deliverable.
 
 Reported by the problem mentor for the current extraction support:
 
-- Recursive functions
-- Parameterized modules requiring wrappers
+- Recursive functions. SAW 1.6 prints `Malformed term`, writes no file, and still
+  exits 0, so check that the output exists.
+- Parameterized modules requiring wrappers (see [Rocq](#rocq))
 - Infinite / stream types
 
 Record it whenever one of these shows up. The cryptographic specification we
@@ -341,7 +399,7 @@ is the failure mode this avoids.
 | Stage | Status |
 | --- | --- |
 | Repository scaffolding | Done |
-| Docker + SAW 1.6 environment | Not yet verified by the team |
+| Docker + SAW 1.6 environment | Verified on Ubuntu 24.04 (WSL2) with Docker 29.8.0 |
 | Experiment 1 — Isabelle extraction | Not started |
 | Experiment 2 — Rocq extraction | Done (ECB, CBC) |
 | Isabelle proof attempt | Not started |

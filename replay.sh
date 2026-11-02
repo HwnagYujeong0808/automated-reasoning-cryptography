@@ -28,7 +28,7 @@ step() { printf '\n=== %s\n' "$*"; }
 
 step "Environment"
 date -u '+%Y-%m-%d %H:%M:%S UTC'
-grep '^PRETTY_NAME' /etc/os-release
+grep '^PRETTY_NAME' /etc/os-release 2>/dev/null || sw_vers
 uname -sr
 docker --version
 echo "commit: $(git rev-parse HEAD)"

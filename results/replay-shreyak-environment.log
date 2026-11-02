@@ -1,0 +1,329 @@
+
+=== Environment
+2026-11-02 01:55:13 UTC
+ProductName:		macOS
+ProductVersion:		26.5.2
+BuildVersion:		25F84
+Darwin 25.5.0
+Docker version 29.8.2, build 7fc2dff
+commit: 1abf628de2fb9f6ec38d26df00483b02411b3d72
+
+=== 1/4 Images
+ghcr.io/galoisinc/saw:1.6
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 324B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/rocq/rocq-prover:9.1.1
+#2 DONE 1.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/rocq/rocq-prover:9.1.1@sha256:9a1e969649a3cc3c6f310d5be5a842e2187384560337c6c0807aba9f8565efba
+#4 resolve docker.io/rocq/rocq-prover:9.1.1@sha256:9a1e969649a3cc3c6f310d5be5a842e2187384560337c6c0807aba9f8565efba done
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 0B / 636.88MB 0.2s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 0B / 252.05MB 0.2s
+#4 sha256:19b129657909f034c721bc55b45ba410979083cd91b5efecb5778d4edb6439fe 644B / 644B 0.2s done
+#4 sha256:a189f527d0a7ef862e8670571f56a8f3c8adea8c7892003531ea6c4a4c4c0af4 3.40kB / 3.40kB 0.2s done
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 0B / 139.99MB 0.2s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 0B / 28.23MB 0.2s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 34.60MB / 636.88MB 1.1s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 2.10MB / 28.23MB 0.8s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 4.19MB / 28.23MB 1.1s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 6.29MB / 28.23MB 1.4s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 69.21MB / 636.88MB 2.0s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 8.39MB / 28.23MB 1.7s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 11.53MB / 28.23MB 2.0s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 13.63MB / 28.23MB 2.3s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 14.68MB / 252.05MB 2.7s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 104.86MB / 636.88MB 2.9s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 15.73MB / 28.23MB 2.6s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 7.34MB / 139.99MB 2.9s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 18.87MB / 28.23MB 2.9s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 22.02MB / 28.23MB 3.2s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 25.17MB / 28.23MB 3.5s
+#4 sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 28.23MB / 28.23MB 3.7s done
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 28.31MB / 252.05MB 4.1s
+#4 extracting sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 14.68MB / 139.99MB 4.1s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 137.36MB / 636.88MB 4.4s
+#4 extracting sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71 0.8s done
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 42.99MB / 252.05MB 5.0s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 22.02MB / 139.99MB 5.0s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 57.67MB / 252.05MB 5.7s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 30.41MB / 139.99MB 5.6s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 171.97MB / 636.88MB 6.0s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 72.35MB / 252.05MB 6.3s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 37.75MB / 139.99MB 6.2s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 46.14MB / 139.99MB 6.6s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 88.08MB / 252.05MB 6.9s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 53.48MB / 139.99MB 7.1s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 105.91MB / 252.05MB 7.5s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 60.82MB / 139.99MB 7.5s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 119.54MB / 252.05MB 8.1s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 69.21MB / 139.99MB 8.0s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 77.59MB / 139.99MB 8.4s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 135.27MB / 252.05MB 8.7s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 205.52MB / 636.88MB 8.9s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 85.98MB / 139.99MB 8.9s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 150.99MB / 252.05MB 9.3s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 94.37MB / 139.99MB 9.3s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 102.76MB / 139.99MB 9.8s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 167.77MB / 252.05MB 10.1s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 111.15MB / 139.99MB 10.2s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 120.59MB / 139.99MB 10.7s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 182.45MB / 252.05MB 11.0s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 238.03MB / 636.88MB 11.3s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 130.02MB / 139.99MB 11.1s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 196.08MB / 252.05MB 11.6s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 137.36MB / 139.99MB 11.4s
+#4 sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 139.99MB / 139.99MB 11.6s done
+#4 extracting sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 210.76MB / 252.05MB 12.0s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 227.54MB / 252.05MB 12.5s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 243.27MB / 252.05MB 12.9s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 270.53MB / 636.88MB 13.4s
+#4 sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 252.05MB / 252.05MB 13.5s done
+#4 extracting sha256:67508554b445c5af0bc34058f6f7873a7baabc0a9515e5b30599209d2fe99151 2.3s done
+#4 extracting sha256:a189f527d0a7ef862e8670571f56a8f3c8adea8c7892003531ea6c4a4c4c0af4 0.0s done
+#4 extracting sha256:19b129657909f034c721bc55b45ba410979083cd91b5efecb5778d4edb6439fe done
+#4 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0.0s done
+#4 extracting sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 304.09MB / 636.88MB 14.6s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 336.59MB / 636.88MB 15.5s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 369.10MB / 636.88MB 16.2s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 406.85MB / 636.88MB 17.0s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 440.40MB / 636.88MB 17.7s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 476.05MB / 636.88MB 18.5s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 511.71MB / 636.88MB 19.2s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 545.26MB / 636.88MB 20.0s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 583.01MB / 636.88MB 20.9s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 616.56MB / 636.88MB 21.6s
+#4 sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 636.88MB / 636.88MB 22.6s done
+#4 extracting sha256:be6c93ef04a50e8020c041be8cd53eb456a0d0aadfcc30c44b018c1c7153f6cb 10.1s done
+#4 DONE 24.3s
+
+#4 [1/2] FROM docker.io/rocq/rocq-prover:9.1.1@sha256:9a1e969649a3cc3c6f310d5be5a842e2187384560337c6c0807aba9f8565efba
+#4 extracting sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73
+#4 extracting sha256:e791a3d23be242996e17f9f2da9ceaa493db402350d82a2112d539b008ef4a73 15.8s done
+#4 DONE 40.2s
+
+#5 [2/2] RUN opam install -y coq=9.1.1     && opam pin -y coq-bits https://github.com/rocq-community/bits.git#f50fc3e5f1eabcb0b0b94c8d25f75e61a255c2ba     && opam pin -y coq-flocq https://gitlab.inria.fr/flocq/flocq.git#27143972fc1dc96e281626d5194b5b371f05db80
+#5 2.906 [NOTE] It seems you have not updated your repositories for a while. Consider updating them with:
+#5 2.906        opam update
+#5 2.906 
+#5 7.136 The following actions will be performed:
+#5 7.138 === install 3 packages
+#5 7.138   - install coq        9.1.1
+#5 7.138   - install coq-core   9.1.1 [required by coq]
+#5 7.138   - install coq-stdlib 9.0.0 [required by coq]
+#5 7.142 
+#5 7.142 <><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+#5 10.69 -> retrieved coq-core.9.1.1  (https://opam.ocaml.org/cache)
+#5 18.56 -> installed coq-core.9.1.1
+#5 18.59 -> installed coq-stdlib.9.0.0
+#5 18.60 -> installed coq.9.1.1
+#5 18.74 Done.
+#5 18.74 
+#5 18.74 <><> coq-core.9.1.1 installed successfully ><><><><><><><><><><><><><><><><><><>
+#5 18.74 => Coq has been renamed to The Rocq Prover, see https://rocq-prover.org/refman/changes.html#porting-to-the-rocq-prover for details.
+#5 18.74       This package provides compatibility binaries to ease the transition to the new rocq binary.
+#5 21.30 [coq-bits.1.1.0] synchronised (git+https://github.com/rocq-community/bits.git#f50fc3e5f1eabcb0b0b94c8d25f75e61a255c2ba)
+#5 21.35 coq-bits is now pinned to git+https://github.com/rocq-community/bits.git#f50fc3e5f1eabcb0b0b94c8d25f75e61a255c2ba (version dev)
+#5 21.35 
+#5 21.35 [NOTE] It seems you have not updated your repositories for a while. Consider updating them with:
+#5 21.35        opam update
+#5 21.35 
+#5 33.45 The following actions will be performed:
+#5 33.46 === install 43 packages
+#5 33.46   - install atd                          4.2.0         [required by atdgen, atdts]
+#5 33.46   - install atdgen                       4.2.0         [required by elpi]
+#5 33.46   - install atdgen-runtime               4.2.0         [required by atdgen]
+#5 33.46   - install atdts                        4.2.0         [required by elpi]
+#5 33.46   - install base                         v0.16.5       [required by ppx_optcomp]
+#5 33.46   - install biniou                       1.2.2         [required by atdgen]
+#5 33.46   - install camlp-streams                5.0.1         [required by biniou]
+#5 33.46   - install cmdliner                     2.1.1         [required by atdts]
+#5 33.46   - install coq-bits                     dev (pinned)
+#5 33.46   - install coq-elpi                     3.5.0         [required by coq-mathcomp-algebra-tactics]
+#5 33.46   - install coq-mathcomp-algebra         2.5.0         [required by coq-bits]
+#5 33.46   - install coq-mathcomp-algebra-tactics 1.2.7         [required by coq-bits]
+#5 33.46   - install coq-mathcomp-ssreflect       2.5.0         [required by coq-mathcomp-algebra-tactics]
+#5 33.46   - install coq-mathcomp-zify            1.7.0+2.4+9.0 [required by coq-mathcomp-algebra-tactics]
+#5 33.46   - install cppo                         1.8.0         [required by ppx_deriving]
+#5 33.46   - install csexp                        1.5.2         [required by dune-configurator]
+#5 33.46   - install dune-configurator            3.21.1        [required by base]
+#5 33.46   - install easy-format                  1.3.4         [required by atd]
+#5 33.46   - install elpi                         3.7.2         [required by rocq-mathcomp-boot]
+#5 33.46   - install menhir                       20260209      [required by elpi]
+#5 33.46   - install menhirCST                    20260209      [required by menhir]
+#5 33.46   - install menhirGLR                    20260209      [required by menhir]
+#5 33.46   - install menhirLib                    20260209      [required by menhir]
+#5 33.46   - install menhirSdk                    20260209      [required by menhir]
+#5 33.46   - install ocaml-compiler-libs          v0.12.4       [required by ppxlib]
+#5 33.46   - install ocamlbuild                   0.16.1        [required by coq-bits]
+#5 33.46   - install ppx_derivers                 1.2.1         [required by ppx_deriving]
+#5 33.46   - install ppx_deriving                 6.0.3         [required by elpi]
+#5 33.46   - install ppx_optcomp                  v0.16.0       [required by elpi]
+#5 33.46   - install ppxlib                       0.35.0        [required by elpi]
+#5 33.46   - install re                           1.14.0        [required by elpi]
+#5 33.46   - install rocq-elpi                    3.5.0         [required by coq-elpi]
+#5 33.46   - install rocq-hierarchy-builder       1.10.3        [required by rocq-mathcomp-boot]
+#5 33.46   - install rocq-mathcomp-algebra        2.5.0         [required by coq-mathcomp-algebra]
+#5 33.46   - install rocq-mathcomp-boot           2.5.0         [required by rocq-mathcomp-order, rocq-mathcomp-fingroup, rocq-mathcomp-ssreflect]
+#5 33.46   - install rocq-mathcomp-fingroup       2.5.0         [required by rocq-mathcomp-algebra]
+#5 33.46   - install rocq-mathcomp-order          2.5.0         [required by rocq-mathcomp-algebra]
+#5 33.46   - install rocq-mathcomp-ssreflect      2.5.0         [required by coq-mathcomp-ssreflect]
+#5 33.46   - install rocq-mathcomp-zify           1.7.0+2.4+9.0 [required by coq-mathcomp-zify]
+#5 33.46   - install sexplib0                     v0.16.0       [required by ppxlib, base]
+#5 33.46   - install stdio                        v0.16.0       [required by ppx_optcomp]
+#5 33.46   - install stdlib-shims                 0.3.0         [required by elpi]
+#5 33.46   - install yojson                       3.0.0         [required by atdgen]
+#5 33.72 
+#5 33.72 <><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+#5 34.64 -> retrieved biniou.1.2.2  (https://opam.ocaml.org/cache)
+#5 35.34 -> retrieved base.v0.16.5  (https://opam.ocaml.org/cache)
+#5 35.44 -> retrieved camlp-streams.5.0.1  (https://opam.ocaml.org/cache)
+#5 36.59 -> retrieved atd.4.2.0, atdgen.4.2.0, atdgen-runtime.4.2.0, atdts.4.2.0  (https://opam.ocaml.org/cache)
+#5 36.62 -> installed camlp-streams.5.0.1
+#5 36.67 -> retrieved cmdliner.2.1.1  (https://opam.ocaml.org/cache)
+#5 36.88 -> retrieved coq-elpi.3.5.0, rocq-elpi.3.5.0  (https://github.com/LPCIC/coq-elpi/releases/download/v3.5.0/rocq-elpi-3.5.0.tar.gz)
+#5 37.44 -> retrieved coq-mathcomp-algebra-tactics.1.2.7  (https://github.com/math-comp/algebra-tactics/archive/refs/tags/1.2.7.tar.gz)
+#5 37.82 -> retrieved cppo.1.8.0  (https://opam.ocaml.org/cache)
+#5 38.09 -> retrieved coq-mathcomp-algebra.2.5.0, coq-mathcomp-ssreflect.2.5.0, rocq-mathcomp-algebra.2.5.0, rocq-mathcomp-boot.2.5.0, rocq-mathcomp-fingroup.2.5.0, rocq-mathcomp-order.2.5.0, rocq-mathcomp-ssreflect.2.5.0  (https://github.com/math-comp/math-comp/archive/mathcomp-2.5.0.tar.gz)
+#5 38.14 -> retrieved csexp.1.5.2  (https://opam.ocaml.org/cache)
+#5 38.89 -> retrieved easy-format.1.3.4  (https://opam.ocaml.org/cache)
+#5 39.48 -> installed csexp.1.5.2
+#5 40.04 -> installed easy-format.1.3.4
+#5 41.91 -> retrieved dune-configurator.3.21.1  (https://opam.ocaml.org/cache)
+#5 43.11 -> installed cppo.1.8.0
+#5 43.31 -> retrieved elpi.3.7.2  (https://opam.ocaml.org/cache)
+#5 43.34 -> installed biniou.1.2.2
+#5 43.91 -> retrieved menhir.20260209, menhirCST.20260209, menhirGLR.20260209, menhirLib.20260209, menhirSdk.20260209  (https://opam.ocaml.org/cache)
+#5 44.46 -> retrieved ocaml-compiler-libs.v0.12.4  (https://opam.ocaml.org/cache)
+#5 44.62 -> retrieved ocamlbuild.0.16.1  (https://opam.ocaml.org/cache)
+#5 44.66 -> retrieved ppx_derivers.1.2.1  (https://opam.ocaml.org/cache)
+#5 46.15 -> retrieved ppx_deriving.6.0.3  (https://opam.ocaml.org/cache)
+#5 46.91 -> retrieved ppx_optcomp.v0.16.0  (https://opam.ocaml.org/cache)
+#5 49.11 -> retrieved ppxlib.0.35.0  (https://opam.ocaml.org/cache)
+#5 49.25 -> installed menhirCST.20260209
+#5 49.88 -> retrieved re.1.14.0  (https://opam.ocaml.org/cache)
+#5 49.94 -> retrieved rocq-hierarchy-builder.1.10.3  (https://github.com/math-comp/hierarchy-builder/releases/download/v1.10.3/hierarchy-builder-1.10.3.tar.gz)
+#5 50.69 -> retrieved rocq-mathcomp-zify.1.7.0+2.4+9.0  (https://github.com/math-comp/mczify/archive/refs/tags/1.7.0+2.4+9.0.tar.gz)
+#5 51.07 -> retrieved stdio.v0.16.0  (https://opam.ocaml.org/cache)
+#5 51.33 -> retrieved sexplib0.v0.16.0  (https://opam.ocaml.org/cache)
+#5 52.38 -> retrieved stdlib-shims.0.3.0  (https://opam.ocaml.org/cache)
+#5 62.17 -> retrieved yojson.3.0.0  (https://opam.ocaml.org/cache)
+#5 65.47 -> installed cmdliner.2.1.1
+#5 65.67 -> installed dune-configurator.3.21.1
+#5 65.88 -> installed menhirGLR.20260209
+#5 66.00 -> installed menhirLib.20260209
+#5 66.03 -> installed menhirSdk.20260209
+#5 66.19 -> installed ocaml-compiler-libs.v0.12.4
+#5 66.20 -> installed ppx_derivers.1.2.1
+#5 66.21 -> installed stdlib-shims.0.3.0
+#5 68.02 -> installed sexplib0.v0.16.0
+#5 70.19 -> installed yojson.3.0.0
+#5 76.17 -> installed re.1.14.0
+#5 77.58 -> installed atdgen-runtime.4.2.0
+#5 106.3 -> installed ocamlbuild.0.16.1
+#5 121.8 -> installed base.v0.16.5
+#5 124.0 -> installed stdio.v0.16.0
+#5 130.7 -> installed ppxlib.0.35.0
+#5 134.2 -> installed ppx_optcomp.v0.16.0
+#5 135.0 -> installed menhir.20260209
+#5 141.0 -> installed ppx_deriving.6.0.3
+#5 144.4 -> installed atd.4.2.0
+#5 147.4 -> installed atdts.4.2.0
+#5 149.0 -> installed atdgen.4.2.0
+#5 173.4 -> installed elpi.3.7.2
+#5 223.9 -> installed rocq-elpi.3.5.0
+#5 224.5 -> installed coq-elpi.3.5.0
+#5 231.1 -> installed rocq-hierarchy-builder.1.10.3
+#5 306.7 -> installed rocq-mathcomp-boot.2.5.0
+#5 365.6 -> installed rocq-mathcomp-fingroup.2.5.0
+#5 458.9 -> installed rocq-mathcomp-order.2.5.0
+#5 467.8 -> installed rocq-mathcomp-ssreflect.2.5.0
+#5 468.1 -> installed coq-mathcomp-ssreflect.2.5.0
+#5 1116.8 -> installed rocq-mathcomp-algebra.2.5.0
+#5 1117.2 -> installed coq-mathcomp-algebra.2.5.0
+#5 1156.3 -> installed rocq-mathcomp-zify.1.7.0+2.4+9.0
+#5 1156.3 -> installed coq-mathcomp-zify.1.7.0+2.4+9.0
+#5 1193.1 -> installed coq-mathcomp-algebra-tactics.1.2.7
+#5 1253.4 -> installed coq-bits.dev
+#5 1256.9 Done.
+#5 1293.4 [coq-flocq.4.2.2] synchronised (git+https://gitlab.inria.fr/flocq/flocq.git#27143972fc1dc96e281626d5194b5b371f05db80)
+#5 1293.4 coq-flocq is now pinned to git+https://gitlab.inria.fr/flocq/flocq.git#27143972fc1dc96e281626d5194b5b371f05db80 (version 4.2.2)
+#5 1293.4 
+#5 1293.4 [NOTE] It seems you have not updated your repositories for a while. Consider updating them with:
+#5 1293.4        opam update
+#5 1293.4 
+#5 1297.7 The following actions will be performed:
+#5 1297.7 === install 3 packages
+#5 1297.7   - install conf-autoconf 0.2            [required by coq-flocq]
+#5 1297.7   - install conf-g++      1.0            [required by coq-flocq]
+#5 1297.7   - install coq-flocq     4.2.2 (pinned)
+#5 1297.9 
+#5 1297.9 <><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+#5 1298.0 -> installed conf-g++.1.0
+#5 1298.2 -> installed conf-autoconf.0.2
+#5 1300.4 -> retrieved coq-flocq.4.2.2  (no changes)
+#5 1411.8 -> installed coq-flocq.4.2.2
+#5 1411.8 Done.
+#5 DONE 1412.5s
+
+#6 exporting to image
+#6 exporting layers
+#6 exporting layers 55.9s done
+#6 exporting manifest sha256:e5c416e1ca2ddbdfe48ffd0845b70aab43f260df5f38ca2afb1c32208f5aa6e9 0.0s done
+#6 exporting config sha256:d22601dda74b29a03ff1760714f105c82543101886a15a7ddbc0d23d376b3013 0.1s done
+#6 exporting attestation manifest sha256:b0a22dd72b6584f7d948e57f6baa2873d4184a2b616a3de5a0e21bedfc89abce 0.0s done
+#6 exporting manifest list sha256:e92d52ecfbafa6452279ab7afdb3a684e1184250edacdd2b27f35509903142c9 done
+#6 naming to docker.io/library/saw-core-rocq:9.1.1 done
+#6 unpacking to docker.io/library/saw-core-rocq:9.1.1
+#6 unpacking to docker.io/library/saw-core-rocq:9.1.1 98.1s done
+#6 DONE 154.5s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - InvalidBaseImagePlatform: Base image rocq/rocq-prover:9.1.1 was pulled with platform "linux/amd64", expected "linux/arm64" for current build (line 1)
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/bcf0r5g93mh6mryarttmbpgcw
+ghcr.io/galoisinc/saw:1.6 sha256:92571e2bf339e03a2d11202fbef5c50de33a08612380403cc5450b9e1a4460af
+saw-core-rocq:9.1.1 sha256:e92d52ecfbafa6452279ab7afdb3a684e1184250edacdd2b27f35509903142c9
+
+=== 2/4 SAW scaffolding (saw-core-rocq, v1.6)
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Loading file "saw-core-rocq/saw/generate_scaffolding.saw"
+
+=== 3/4 Extract ECB and CBC wrappers
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Loading file "saw/extract_rocq.saw"
+Extracted examples/ECB/Wrapper.cry to outputs/rocq/ECB/Wrapper.v
+Extracted examples/CBC/Wrapper.cry to outputs/rocq/CBC/Wrapper.v
+Extraction matches committed outputs/rocq.
+
+=== 4/4 Compile saw-core, wrappers and proofs
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+ROCQ compile saw-core (quiet)
+ROCQ DEP VFILES
+ROCQ compile ../outputs/rocq/ECB/Wrapper.v
+ROCQ compile ECB/Proof.v
+ROCQ compile ECB/Bool.v
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
+ROCQ compile ../outputs/rocq/CBC/Wrapper.v
+ROCQ compile CBC/Proof.v
+ROCQ compile CBC/Bool.v
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
+
+=== Result
+54bc99ff2e9d930ca63c0983fabeebecef7f35ca89fe6d85774d2105534bfd1c  outputs/rocq/ECB/Wrapper.v
+8a944cdf117a0220d5d6ea59a8d56078fa56e5e2db626e3f5867c434eedde252  outputs/rocq/CBC/Wrapper.v
+ECB and CBC validated in 1719s; only axiom: error.

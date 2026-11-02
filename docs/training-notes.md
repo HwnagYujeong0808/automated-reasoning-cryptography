@@ -82,6 +82,19 @@ Record decisions here with the reason, so we do not re-argue them later.
 
 ## Log
 
+### 2026-11-02 — shreyak — Isabelle output-write bug: root cause found
+Antonio's `run-saw.sh` failure below ("the exact cause remains unresolved")
+and our own test runs had the same root cause: `write_isabelle_cryptol_modules`'s
+output-directory argument resolves relative to the **`.saw` script's own
+directory**, not the process's working directory. `extract_rocq.saw`'s header
+already documented this exact quirk and works around it with `"../"` prefixes
+- it just hadn't been connected to the Isabelle failures before. Confirmed by
+reproducing the failure with a named, already-existing directory (ruling out
+both the "needs empty string" and "directory must exist" theories), then
+fixing it the same way `extract_rocq.saw` does. Fixed in
+`saw/extract_isabelle.saw` (now writes to `"../outputs/isabelle"`); a full
+`run-saw.sh` run regenerates `outputs/isabelle/Example.thy` correctly.
+
 ### 2026-09-23 — repository scaffolding
 Set up the directory layout, the Cryptol example, the SAW scripts, and the
 experiment template. Nothing has been run against SAW yet — every "expected

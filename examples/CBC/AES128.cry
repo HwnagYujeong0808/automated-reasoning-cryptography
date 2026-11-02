@@ -1,0 +1,28 @@
+// examples/CBC/AES128.cry
+//
+// Concrete instantiation of the generic CBC wrapper with real AES-128,
+// instead of an abstract Key/Block. This is the first time the pipeline
+// targets the project's actual confirmed cipher (AES-128/CBC) rather than
+// a toy or parameterized example.
+//
+// Prerequisite: examples/AES.cry must exist. It is NOT included here —
+// see results/ notes for why and how to get it (copyright on the
+// reference implementation means it needs to be obtained directly from
+// its source, not reconstructed by hand).
+//
+// Cryptol's explicit-instantiation syntax (not the `{ _ }` backtick form,
+// which would just produce another generic wrapper): a `module N = M where`
+// block that gives each of M's parameters a fixed value directly. See
+// https://galoisinc.github.io/cryptol/3.6.0/Modules.html#instantiation-by-parametrizing-declarations
+
+module CBC::AES128 = CBC
+  where
+  import AES
+
+  type Key = [128]
+  type Block = [128]
+
+  // AES.cry's aesEncrypt/aesDecrypt take (message, key) tuples and are
+  // already configured for AES-128 (Nk = AES128, so AESKeySize = 128).
+  encipher k b = aesEncrypt (b, k)
+  decipher k b = aesDecrypt (b, k)

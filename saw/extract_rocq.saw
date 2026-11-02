@@ -11,3 +11,5 @@ write_rocq_cryptol_module "../examples/ECB/Wrapper.cry" "../outputs/rocq/ECB/Wra
 print "Extracted examples/ECB/Wrapper.cry to outputs/rocq/ECB/Wrapper.v";
 write_rocq_cryptol_module "../examples/CBC/Wrapper.cry" "../outputs/rocq/CBC/Wrapper.v" [] [];
 print "Extracted examples/CBC/Wrapper.cry to outputs/rocq/CBC/Wrapper.v";
+write_rocq_cryptol_module "../examples/CBC/AES128.cry" "../outputs/rocq/CBC/AES128.v" [] [];
+print "Extracted examples/CBC/AES128.cry to outputs/rocq/CBC/AES128.v";

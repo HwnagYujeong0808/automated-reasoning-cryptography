@@ -80,8 +80,9 @@ docker run --rm -u "$USERMAP" -e HOME=/tmp -e "PATH=$OPAM_BIN:/usr/bin:/bin" \
     make -f Makefile.rocq' | tee "$ROCQ_OUT"
 
 step "Result"
-# Three Print Assumptions (ECB, CBC, CBC on [w] blocks); `error` must be all they use.
-[ "$(grep -c '^Axioms:' "$ROCQ_OUT")" = 3 ]
+# Four Print Assumptions (ECB, CBC, CBC on [w] blocks, AES-128/CBC); `error` must
+# be all they use.
+[ "$(grep -c '^Axioms:' "$ROCQ_OUT")" = 4 ]
 extra="$(awk '/^ROCQ/{f=0} f; /^Axioms:/{f=1}' "$ROCQ_OUT" | grep -v -E '^(Axioms:|error : )' || true)"
 [ -z "$extra" ] || { printf 'Unexpected axioms:\n%s\n' "$extra"; exit 1; }
 sha256sum outputs/rocq/ECB/Wrapper.v outputs/rocq/CBC/Wrapper.v

@@ -1,12 +1,12 @@
 
 === Environment
-2026-11-19 06:42:00 UTC
+2026-11-19 06:53:17 UTC
 ProductName:		macOS
 ProductVersion:		26.5.2
 BuildVersion:		25F84
 Darwin 25.5.0
 Docker version 29.8.2, build 7fc2dff
-commit: a625bd0ddfc175bbedfe4557626819194ddcf654
+commit: 37e46d9e42dc848842527934b5a94eba1131cb28
 
 === 1/4 Images
 ghcr.io/galoisinc/saw:1.6
@@ -42,8 +42,11 @@ Axioms:
 error : forall a : Type, Inhabited a -> string -> a
 Axioms:
 error : forall a : Type, Inhabited a -> string -> a
+ROCQ compile CBC/AES128Proof.v
+Axioms:
+error : forall a : Type, Inhabited a -> string -> a
 
 === Result
 54bc99ff2e9d930ca63c0983fabeebecef7f35ca89fe6d85774d2105534bfd1c  outputs/rocq/ECB/Wrapper.v
 8a944cdf117a0220d5d6ea59a8d56078fa56e5e2db626e3f5867c434eedde252  outputs/rocq/CBC/Wrapper.v
-ECB and CBC validated in 70s; only axiom: error.
+ECB and CBC validated in 76s; only axiom: error.

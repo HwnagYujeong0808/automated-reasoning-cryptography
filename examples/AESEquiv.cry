@@ -1,0 +1,17 @@
+// examples/AESEquiv.cry
+//
+// States that the adapted AES (AESAdapted) agrees with Galois's original AES.
+// Kept separate from AESAdapted so extraction of AESAdapted never touches the
+// original's recursive definitions. Check in a Cryptol REPL:  :m AESEquiv
+module AESEquiv where
+
+import AES as Orig
+import AESAdapted
+
+property PowAgrees n k = gf28Pow (n, k) == Orig::gf28Pow (n, k)
+
+property ExpandKeyAgrees key = ExpandKey key == Orig::ExpandKey key
+
+property EncryptAgrees msg key = aesEncrypt (msg, key) == Orig::aesEncrypt (msg, key)
+
+property DecryptAgrees ct key = aesDecrypt (ct, key) == Orig::aesDecrypt (ct, key)

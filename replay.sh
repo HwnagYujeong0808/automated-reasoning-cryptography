@@ -6,7 +6,9 @@
 #
 #     ./replay.sh
 #
-# Everything is logged to results/replay-<hostname>.log. Exits non-zero if a
+# Everything is logged to results/replay-<name>.log, where <name> is the
+# REPLAY_NAME environment variable if set (e.g. REPLAY_NAME=shreyak-environment)
+# and otherwise the hostname. Exits non-zero if a
 # step fails, if extraction differs from the committed outputs/rocq, or if a
 # proof rests on any axiom other than `error`.
 
@@ -18,7 +20,7 @@ ROCQ_IMAGE=saw-core-rocq:9.1.1
 OPAM_BIN=/home/rocq/.opam/4.14.2+flambda/bin
 SAW_SCRIPT="$PWD/.cache/saw-script"
 USERMAP="$(id -u):$(id -g)"   # host owner, so generated files stay ours on any UID
-LOG="results/replay-$(hostname -s).log"
+LOG="results/replay-${REPLAY_NAME:-$(hostname -s)}.log"
 ROCQ_OUT="$(mktemp)"
 trap 'rm -f "$ROCQ_OUT"' EXIT
 
@@ -49,9 +51,16 @@ docker run --rm -u "$USERMAP" -v "$SAW_SCRIPT:/work" -w /work "$SAW_IMAGE" \
 step "3/4 Extract ECB and CBC wrappers"
 # SAW can exit 0 without writing (recursive specs: "Malformed term"). Removing the
 # old files first turns that silence into a failure of the git diff below.
-rm -f outputs/rocq/ECB/Wrapper.v outputs/rocq/CBC/Wrapper.v
+rm -f outputs/rocq/ECB/Wrapper.v outputs/rocq/CBC/Wrapper.v outputs/rocq/CBC/AESAdapted.v
 docker run --rm -u "$USERMAP" -v "$PWD:/work" -w /work \
   -e CRYPTOLPATH=/work/examples "$SAW_IMAGE" saw/extract_rocq.saw
+# SAW 1.6 writes the tactic name `solveUnsafeAssumePGeq` into generated Rocq, but
+# its own library defines `solveUnsafeAssumePGEq` (capital EQ), so any file that
+# uses it fails to compile. Correct the spelling in the generated files.
+for f in outputs/rocq/ECB/Wrapper.v outputs/rocq/CBC/Wrapper.v outputs/rocq/CBC/AESAdapted.v; do
+  [ -s "$f" ] || { echo "extraction wrote nothing: $f"; exit 1; }
+  sed 's/solveUnsafeAssumePGeq/solveUnsafeAssumePGEq/g' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+done
 git diff --exit-code --stat -- outputs/rocq/ECB outputs/rocq/CBC
 echo "Extraction matches committed outputs/rocq."
 

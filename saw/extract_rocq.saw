@@ -11,5 +11,10 @@ write_rocq_cryptol_module "../examples/ECB/Wrapper.cry" "../outputs/rocq/ECB/Wra
 print "Extracted examples/ECB/Wrapper.cry to outputs/rocq/ECB/Wrapper.v";
 write_rocq_cryptol_module "../examples/CBC/Wrapper.cry" "../outputs/rocq/CBC/Wrapper.v" [] [];
 print "Extracted examples/CBC/Wrapper.cry to outputs/rocq/CBC/Wrapper.v";
-write_rocq_cryptol_module "../examples/CBC/AES128.cry" "../outputs/rocq/CBC/AES128.v" [] [];
-print "Extracted examples/CBC/AES128.cry to outputs/rocq/CBC/AES128.v";
+// The adapted AES-128 is extracted on its own, not through the
+// CBC::AES128 instantiation module (examples/CBC/AES128.cry): the extractor
+// emits an instantiated parameter twice under the same name (a known issue),
+// which Rocq rejects ("encipher already exists"). The generic CBC wrapper
+// takes the cipher as a parameter, so the Rocq proofs plug these in instead.
+write_rocq_cryptol_module "../examples/AESAdapted.cry" "../outputs/rocq/CBC/AESAdapted.v" [] [];
+print "Extracted examples/AESAdapted.cry to outputs/rocq/CBC/AESAdapted.v";

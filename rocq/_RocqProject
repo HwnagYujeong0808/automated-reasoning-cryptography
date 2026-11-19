@@ -13,5 +13,6 @@ ECB/Proof.v
 ECB/Bool.v
 
 ../outputs/rocq/CBC/Wrapper.v
+../outputs/rocq/CBC/AESAdapted.v
 CBC/Proof.v
 CBC/Bool.v
